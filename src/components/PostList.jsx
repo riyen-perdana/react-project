@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Postprops from "./Postprops"
 import classes from './PostList.module.css';
 import NewPost from "./NewPost";
+import Modal from './Modal';
 export default function PostList() {
 
     // TODO: Set First Value For Message and Name
@@ -26,10 +27,12 @@ export default function PostList() {
 
     return (
         <>
-            <NewPost 
-                handleMessage={messageChangeHandler} 
-                handleName={nameChangeHandler} 
-            />
+            <Modal>
+                <NewPost
+                    handleMessage={messageChangeHandler}
+                    handleName={nameChangeHandler}
+                />
+            </Modal>
             <ul className={classes.posts}>
 
                 {/* TODO: Map The Posts For Looping */}
@@ -37,7 +40,7 @@ export default function PostList() {
                     <Postprops key={post.id} name={post.name} message={post.message} />
                 ))}
 
-                <Postprops name={ name } message={messages} />
+                <Postprops name={name} message={messages} />
                 <Postprops name="Yelvita" message="Hallo My Sweety Riyen Perdana" />
             </ul>
         </>
