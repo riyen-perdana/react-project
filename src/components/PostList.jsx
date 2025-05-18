@@ -3,7 +3,7 @@ import Postprops from "./Postprops"
 import classes from './PostList.module.css';
 import NewPost from "./NewPost";
 import Modal from './Modal';
-export default function PostList() {
+export default function PostList(props) {
 
     // TODO: Set First Value For Message and Name
     const [messages, setMessages] = useState('Hallo My Dear Yelvita');
@@ -27,12 +27,15 @@ export default function PostList() {
 
     return (
         <>
-            <Modal>
-                <NewPost
-                    handleMessage={messageChangeHandler}
-                    handleName={nameChangeHandler}
-                />
-            </Modal>
+            {props.isModalOpen &&
+                <Modal onClose={props.onClose}>
+                    <NewPost
+                        handleMessage={messageChangeHandler}
+                        handleName={nameChangeHandler}
+                    />
+                </Modal>
+            }
+
             <ul className={classes.posts}>
 
                 {/* TODO: Map The Posts For Looping */}
