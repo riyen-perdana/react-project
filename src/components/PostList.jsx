@@ -9,29 +9,21 @@ export default function PostList(props) {
     const [messages, setMessages] = useState('Hallo My Dear Yelvita');
     const [name, setName] = useState('Riyen Perdana');
 
-    function messageChangeHandler(event) {
-        setMessages(event.target.value);
-        // setPosts(() => {
-        //     return [
-        //         { id: 1, name: posts[0].name, message: event.target.value },
-        //     ];
-        // });
-    }
-    function nameChangeHandler(event) {
-        setName(event.target.value);
-    }
-
     const [posts, setPosts] = useState([
         { id: 1, name: "Sabrina Adriyela", message: "Hallo My Little Princess Sabrina Adriyela" },
     ]);
 
+    function addPostHandler(postData) {
+        setPosts((posts) => [postData, ...posts]);
+    }
+
     return (
         <>
             {props.isModalOpen &&
-                <Modal onClose={props.onClose}>
+                <Modal>
                     <NewPost
-                        handleMessage={messageChangeHandler}
-                        handleName={nameChangeHandler}
+                        onClose={props.onClose}
+                        addPost={addPostHandler}
                     />
                 </Modal>
             }
