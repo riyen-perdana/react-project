@@ -31,6 +31,9 @@ export default function PostList(props) {
             <ul className={classes.posts}>
 
                 {/* TODO: Map The Posts For Looping */}
+                {
+                    posts.length === 0 && <h2 className={classes.noPosts}>No Posts Found</h2>
+                }
                 {posts.map((post) => (
                     <Postprops key={post.id} name={post.name} message={post.message} />
                 ))}
